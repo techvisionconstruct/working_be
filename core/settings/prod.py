@@ -3,7 +3,7 @@ from config.constants import DATABASES, CORS_CONFIG
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://working-be.onrender.com/', 'https://www.simpleprojex.com/']
 
 DATABASES = {
     "default": DATABASES["production"],
