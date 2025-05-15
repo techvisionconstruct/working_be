@@ -2,7 +2,7 @@
 echo "BUILD START"
 
 # Install dependencies to Vercel's preferred location
-python3.12 -m pip install -r ./requirements/prod.txt
+python3.12 -m pip install -r ./requirements/prod.txt --target ./.vercel/python
 
 # Ensure Python can find the packages
 export PYTHONPATH=$PYTHONPATH:$(pwd)/.vercel/python
