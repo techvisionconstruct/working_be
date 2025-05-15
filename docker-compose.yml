@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        - ENVIRONMENT=${ENVIRONMENT:-prod}
+    restart: always
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/mediafiles
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-production}
+      - ${ENVIRONMENT:-PROD}_DB_HOST=db
+      - ${ENVIRONMENT:-PROD}_DB_PORT=5432
+    ports:
+      - "8000:8000"
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
+
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=${${ENVIRONMENT:-PROD}_DB_USER}
+      - POSTGRES_PASSWORD=${${ENVIRONMENT:-PROD}_DB_PASSWORD}
+      - POSTGRES_DB=${${ENVIRONMENT:-PROD}_DB_NAME}
+    ports:
+      - "5432:5432"
+
+  nginx:
+    image: nginx:1.25-alpine
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - static_volume:/var/html/static
+      - media_volume:/var/html/media
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
