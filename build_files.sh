@@ -10,6 +10,6 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)/.vercel/python
 # Collect static files with correct Python path
 python3.12 -m pip install --upgrade pip
 python3.12 manage.py collectstatic --noinput --clear
-pip list
+python3.12 -m pip list
 
 echo "BUILD END"
