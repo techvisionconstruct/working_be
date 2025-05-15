@@ -12,3 +12,5 @@ application = get_wsgi_application()
 # Vercel requires this handler function
 def handler(request, response):
     return application(request, response)
+
+app = application
