@@ -10,6 +10,6 @@ print("PYTHONPATH: $PYTHONPATH")
 # Collect static files with correct Python path
 python3.12 -m pip install --upgrade pip
 python3.12 manage.py collectstatic --noinput --clear
-pip list
+# pip list
 
 echo "BUILD END"
