@@ -1,17 +1,17 @@
 #!/bin/bash
-export PYTHONPATH=$PYTHONPATH:$(pwd)/.vercel/python
 echo "BUILD START"
-mkdir -p staticfiles_build/static
 
-# Install dependencies to Vercel's preferred location
-python3.12 -m pip install -r ./requirements/prod.txt --target ./vercel/python
+# Install dependencies to Vercel's expected location
+python -m pip install --upgrade pip
+python -m pip install -r ./requirements/prod.txt --target ./.vercel/python
 
-# Ensure Python can find the packages
+# Set Python path (crucial for Django to find packages)
+export PYTHONPATH=$PYTHONPATH:$(pwd)/.vercel/python
 
+# Verify Django is installed
+python -c "import django; print(django.__version__)"
 
-# Collect static files with correct Python path
-python3.12 -m pip install --upgrade pip
-python3.12 manage.py collectstatic --noinput --clear
-python3.12 -m pip list
+# Collect static files
+python manage.py collectstatic --noinput --clear
 
 echo "BUILD END"
