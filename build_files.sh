@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "BUILD START"
-
+python3.12 -m venv .venv
+source .venv/bin/activate
 # Install dependencies to Vercel's preferred location
 python3.12 -m pip install -r ./requirements/prod.txt
 
