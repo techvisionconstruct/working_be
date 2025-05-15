@@ -1,6 +1,7 @@
 #!/bin/bash
 export PYTHONPATH=$PYTHONPATH:$(pwd)/.vercel/python
 echo "BUILD START"
+mkdir -p staticfiles_build/static
 python3.12 -m venv .venv
 source .venv/bin/activate
 # Install dependencies to Vercel's preferred location

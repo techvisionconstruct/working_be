@@ -98,11 +98,12 @@ USE_TZ = True
 AWS_LOCATION = "static"
 AWS_MEDIA_LOCATION = "media"
 
-STATIC_URL = "static/"
+# settings.py
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')  # Must match vercel.json
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Your source static files
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_URLS ='/media/'
+MEDIA_URL = '/media/'  # Fixed typo from MEDIA_URLS
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
