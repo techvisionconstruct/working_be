@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "core.wsgi.app"
+WSGI_APPLICATION = "core.wsgi.application"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,13 +98,13 @@ USE_TZ = True
 AWS_LOCATION = "static"
 AWS_MEDIA_LOCATION = "media"
 
-# settings.py
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')  # Must match vercel.json
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Your source static files
+STATIC_URL = "static/"
 
-MEDIA_URL = '/media/'  # Fixed typo from MEDIA_URLS
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+MEDIA_URL = "/media/"
 
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
