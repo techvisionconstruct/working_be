@@ -1,12 +1,13 @@
 #!/bin/bash
+export PYTHONPATH=$PYTHONPATH:$(pwd)/.vercel/python
 echo "BUILD START"
 python3.12 -m venv .venv
 source .venv/bin/activate
 # Install dependencies to Vercel's preferred location
-python3.12 -m pip install -r ./requirements/prod.txt
+python3.12 -m pip install -r ./requirements/prod.txt --target ./.vercel/python
 
 # Ensure Python can find the packages
-# export PYTHONPATH=$PYTHONPATH:$(pwd)/.vercel/python
+
 
 # Collect static files with correct Python path
 python3.12 -m pip install --upgrade pip

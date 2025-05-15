@@ -15,7 +15,7 @@
             "dest": "/static/$1"
         },
         {
-            "src": "/core/urls.py",
+            "src": "/(.*)",
             "dest": "core/wsgi.py"
         }
     ]

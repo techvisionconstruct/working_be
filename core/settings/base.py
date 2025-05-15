@@ -100,7 +100,8 @@ AWS_MEDIA_LOCATION = "media"
 
 STATIC_URL = "static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URLS ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
